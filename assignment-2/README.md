@@ -74,8 +74,8 @@ Relation extraction macro-F1: logistic regression 0.523, SciBERT + entity marker
 
 ## Plan – Part 2 Situated learning (5 marks)
 
-Separate 2–4 page PDF. Suggested topic: **8. Information Extraction** (fits our domain and Part 1 directly), or
-3. RAG / 1. Open-source tools if that matches your workplace better. See `situated-learning/outline.md`.
+Separate 2–4 page PDF. Chosen topic: **7. Machine Translation**.
+See `situated-learning/outline.md`.
 It must describe a *real* use in a member's organisation/industry – or clearly say it is a proposed application.
 
 ## Workflow
