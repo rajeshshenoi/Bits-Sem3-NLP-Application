@@ -50,14 +50,26 @@ Integrity rules respected: seqeval entity-level metric, one test set, shared see
 4. File → Download `.ipynb` (executed, with outputs) and also download `outputs/llm_ner_outputs.csv`.
 5. Commit both into this folder (`notebooks/` and `outputs/`).
 
+## Headline results (Colab T4 run)
+
+| Model | F1 shared sample (100 sent.) | F1 full test |
+| --- | --- | --- |
+| CRF | 0.562 | 0.581 |
+| BiLSTM-CRF + GloVe | 0.581 | 0.630 |
+| **SciBERT** | **0.722** | **0.732** |
+| LLM zero-shot (Qwen2.5-3B) | 0.378 | – |
+| LLM few-shot | 0.547 | – |
+
+Relation extraction macro-F1: logistic regression 0.523, SciBERT + entity markers 0.530.
+
 ## Checklist before submission
 
 - [x] Group number, names and BITS IDs filled in; file renamed to Group_81.
 - [x] Contribution column filled (equal contribution).
-- [ ] Notebook executed top-to-bottom on Colab with **no error cells**.
-- [ ] GloVe actually downloaded (Part C prints `GloVe 6B 100d: 400,000 vectors`, not the warning).
-- [ ] Replace every `✏️ After running …` block with discussion that quotes the printed numbers.
-- [ ] Reflection claims match the Part G table and the auto-generated summary.
+- [x] Notebook executed top-to-bottom on Colab with **no error cells**.
+- [x] GloVe actually downloaded (Part C prints `GloVe 6B 100d: 400,000 vectors`, not the warning).
+- [x] Replace every `✏️ After running …` block with discussion that quotes the printed numbers.
+- [x] Reflection claims match the Part G table and the auto-generated summary.
 - [ ] Part 2 PDF written from `situated-learning/outline.md`.
 
 ## Plan – Part 2 Situated learning (5 marks)
@@ -70,6 +82,6 @@ It must describe a *real* use in a member's organisation/industry – or clearly
 
 1. ✅ Repo organised, brief + template stored, plan written.
 2. ✅ Notebook drafted and smoke-tested end-to-end locally (tiny stand-in models, since the sandbox has no Hub access).
-3. ⏳ Group runs the notebook on Colab and commits the executed copy.
-4. ⏳ Write the result discussions (✏️ blocks) from the real numbers.
+3. ✅ Group runs the notebook on Colab and commits the executed copy.
+4. ✅ Write the result discussions (✏️ blocks) from the real numbers.
 5. ⏳ Situated learning PDF.
