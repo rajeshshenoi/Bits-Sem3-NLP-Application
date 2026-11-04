@@ -9,136 +9,157 @@ subtitle: "Topic 7 – Machine Translation in the Automotive Industry"
 
 | | |
 | --- | --- |
-| **Team member names** | RAJESH R. SHENOI (2025AE05200), PARUL MITTAL (2025AE05198), SIDDHARTH KUCHIMANCHI (2025AE05199), CHAUHAN AYUSH UPENDRA (2025AE05684) |
-| **BITS Email id** | ⟨email 1⟩, ⟨email 2⟩, ⟨email 3⟩, ⟨email 4⟩ |
+| **Team member names** | RAJESH R. SHENOI (2025AE05200) · PARUL MITTAL (2025AE05198) · SIDDHARTH KUCHIMANCHI (2025AE05199) · CHAUHAN AYUSH UPENDRA (2025AE05684) |
+| **BITS Email id** | 2025ae05200@wilp.bits-pilani.ac.in · 2025ae05198@wilp.bits-pilani.ac.in · 2025ae05199@wilp.bits-pilani.ac.in · 2025ae05684@wilp.bits-pilani.ac.in |
 | **Industry / Domain** | Automotive |
-| **Organisation type** | ⟨confirm, e.g. automotive supplier / engineering organisation serving vehicle manufacturers⟩ – workplace of group member Rajesh R. Shenoi, anonymised |
+| **Organisation type** | Automotive organisation that receives technical documents from German and Japanese automotive customers (workplace of group member Rajesh R. Shenoi; anonymised) |
 
-> **How to read this report.** Sections marked **[Observed]** describe how machine translation is used in the
-> organisation today, as reported by the group member who works there. Sections marked **[Proposed]** are the
-> group’s own suggestion. No confidential, customer or personal information is included; all example sentences are
-> synthetic.
+> **How to read this report.** **[Observed]** marks how machine translation is used in the organisation today, as
+> reported by the group member who works there. **[Proposed]** marks the group’s own suggestion and demonstration.
+> No confidential, customer or personal information is included; all example sentences are synthetic.
 
 ## 5.1 Industry context – Anchor
 
 | | |
 | --- | --- |
-| **Industry / Organisation** | Automotive; an organisation that receives technical documents from vehicle‑manufacturer customers in Germany and Japan. |
-| **Selected NLP concept** | Machine Translation (MT) – neural, Transformer‑based MT, and LLM‑based translation. |
-| **Application / use case** | **[Observed]** Translating German and Japanese customer documents – e.g. **customer‑specific requirements (CSRs)** and **vehicle specifications** – into English, so that engineering, quality and project teams can understand and implement them. |
-| **Problem addressed** | Customers write requirements in their own language, while the engineering teams work in English. Every requirement that is misunderstood can lead to a design error, a failed validation or a contractual non‑conformity. Human translation of long specifications is slow and expensive; MT gives engineers fast access to the content. |
-| **Users / stakeholders** | Engineers and project managers (readers of the translation); the **language‑competent department** that reviews translations; quality/requirements managers; the customer (owner of the document and of its confidentiality); IT/security and legal (approve tools and enforce confidentiality agreements). |
+| **Industry / Organisation** | Automotive; an organisation whose customers send technical documents in German and Japanese. |
+| **Selected NLP concept** | Machine Translation (MT) – neural, Transformer‑based MT and LLM‑based translation. |
+| **Application / use case** | **[Observed]** Translating German and Japanese customer documents – e.g. **customer‑specific requirements (CSRs)** and **vehicle specifications** – into English so that engineering, quality and project teams can understand and implement them. |
+| **Problem addressed** | Customers write requirements in their own language while engineering works in English. A misunderstood requirement can cause a design error, a failed validation or a contractual non‑conformity. Full human translation of long specifications is slow and costly; MT gives engineers fast access to the content. |
+| **Users / stakeholders** | Engineers and project managers (readers); the **language‑competent department** (reviewers); quality / requirements managers; the customer (owner of the document and its confidentiality); IT security and legal (approve tools, enforce confidentiality agreements). |
 | **Status** | **Deployed** – MT is used today for this purpose. |
 
 ## 5.2 Concept in practice – Apply
 
-**Data / input.** **[Observed]** German and Japanese technical documents received from customers: customer‑specific
-requirements and vehicle specifications. Typical content (illustrated with synthetic sentences in the Evidence
-section): obligations (“*muss*”, “*しなければならない*” → *shall*), numeric limits with units (temperatures, torque,
-time limits), references to standards (e.g. ISO 26262), and dense domain terminology (*Steuergerät* – control unit,
-*Lastenheft* – requirements specification, *耐久試験* – durability test).
+**Data / input.** **[Observed]** German and Japanese customer documents: customer‑specific requirements and vehicle
+specifications. Their language is special: obligations (*muss*, *しなければならない* → **shall**), prohibitions
+(*darf nicht* → **must not**), numeric limits with units and signs (−40 °C, 320 Nm, 10 ms), references to standards
+(ISO 26262) and dense terminology (*Steuergerät* – control unit, *Lastenheft* – requirements specification,
+*耐久試験* – durability test).
 
-**NLP approach / concept (course link).** Modern MT systems are **neural encoder–decoder Transformers**: the encoder
-builds contextual representations of the source sentence with self‑attention, and the decoder generates the target
-sentence token by token while attending to the source (cross‑attention). Text is split into **sub‑word units**
-(SentencePiece/BPE), so rare compounds such as *Dauerlaufprüfung* can still be translated, and decoding uses **beam
-search**. **Multilingual models** (e.g. NLLB‑200) share one model across many language pairs; **LLMs** translate by
-prompting. Quality is measured with **BLEU** and **chrF** against reference translations, and in practice with human
-**post‑editing (MTPE)**.
+**NLP approach / concept (course link).** Today’s MT systems are **neural encoder–decoder Transformers**: the encoder
+builds contextual representations of the source sentence with self‑attention; the decoder generates the English
+sentence token by token, attending to the source through cross‑attention, and **beam search** keeps the best partial
+translations. Text is split into **sub‑word units** (SentencePiece), so long German compounds such as
+*Dauerlaufprüfung* can still be translated. **Multilingual models** (NLLB‑200) share one network across ~200
+languages; **LLMs** translate by prompting. Quality is measured automatically with **BLEU** (word n‑gram overlap)
+and **chrF** (character n‑gram F‑score) against reference translations, and in practice by human **post‑editing
+(MTPE)**.
 
-**Tool / model / framework.** **[Observed]** Google Translate and other translation tools approved by the enterprise.
-**[Proposed – demo]** Open‑source models that run locally: Helsinki‑NLP **OPUS‑MT** (Marian, de→en and ja→en) and
-Meta **NLLB‑200 distilled 600M**, run with HuggingFace `transformers` on a CPU.
+**Tool / model / framework.** **[Observed]** Google Translate and other translation tools approved by the
+enterprise. **[Proposed – demo]** Open‑source models run locally with HuggingFace `transformers`: Helsinki‑NLP
+**OPUS‑MT** (Marian Transformer, ~75 M parameters, one model per language pair) and Meta **NLLB‑200 distilled**
+(615 M parameters, multilingual).
 
 **Workflow / architecture.**
 
-![Current and proposed MT workflow](mt_workflow.png)
+![Current (observed) and proposed on‑premise MT workflow](mt_workflow.png)
 
-* **[Observed] current workflow:** document received → text translated with Google Translate or an approved tool →
-  output **used as is** for understanding, or **reviewed by the language‑competent department** when accuracy matters.
-  Because of the customers’ **confidentiality agreements**, documents may not be put into the public domain, so
-  public/commercial web translators and API‑ or LLM‑based translation services cannot be used for these documents.
-* **[Proposed] on‑premise workflow:** document stays inside the company network → pre‑processing (split into
-  sentences, protect numbers/units/standard names) → **locally hosted open‑source MT model** with a **domain
-  glossary** → automatic checks (numbers, glossary terms, obligations) → low‑confidence sentences routed to the
-  language department for post‑editing → approved translation stored in a translation memory, which later improves
-  the model.
+* **[Observed] current workflow:** document received → translated with Google Translate or an approved tool →
+  output **used as is** for understanding, or **reviewed by the language‑competent department** where accuracy
+  matters. Customer **confidentiality agreements** forbid putting these documents into the public domain, so public
+  web translators and API‑ or LLM‑based translation services cannot be used for them.
+* **[Proposed] on‑premise workflow:** the document never leaves the company network → pre‑processing (sentence
+  split, protect numbers, signs, units and standard names) → **locally hosted open‑source NMT** with a **domain
+  glossary** → automatic checks (numbers, glossary terms, *shall / must not*) → flagged sentences go to the language
+  department for post‑editing → reviewed translations feed a translation memory used for later fine‑tuning.
 
-**Output / result.** **[Observed]** English versions of the customer documents used by the engineering teams, either
-raw or after review. **[Proposed – demo]** See the evidence table below: quality scores, terminology accuracy and CPU
-speed of two open‑source models on synthetic automotive requirement sentences, with no data leaving the machine.
+**Output / result.** **[Observed]** English versions of customer documents used by engineering, raw or after
+review. **[Proposed – demo]** Translations, quality scores and checks below, produced **offline on a single CPU
+thread** – the models were copied once to a local folder and loaded with `local_files_only=True`, so no text left
+the machine.
 
 **Evidence.**
 
-*E1 – Demo results (synthetic data, open‑source models, offline CPU inference; notebook `mt_demo.ipynb`).*
+*E1 – On‑premise MT demo* (`mt_demo.ipynb`, Google Colab CPU, 1 thread, beam size 4; 8 German and 6 Japanese
+synthetic requirement sentences; references prepared by the group). Small test set – results are indicative only.
 
-⟨DEMO TABLE – filled from the executed notebook: model, language pair, BLEU, chrF, glossary terms correct,
-numbers/units preserved, CPU seconds per sentence⟩
+| Model (local, offline) | Pair | BLEU | chrF | Glossary terms correct | Numbers kept (auto‑check) | CPU s / sentence | Size on disk |
+| --- | --- | ---: | ---: | :---: | :---: | ---: | ---: |
+| OPUS‑MT de‑en | de→en | **75.8** | **82.6** | **9/10** | 8/8 | **0.86** | 299 MB |
+| NLLB‑200 distilled 600M | de→en | 63.1 | 74.2 | 7/10 | 8/8 | 6.25 | 2.49 GB |
+| OPUS‑MT ja‑en | ja→en | 28.7 | 55.6 | 7/10 | 6/6 | **0.89** | 304 MB |
+| NLLB‑200 distilled 600M | ja→en | **49.0** | **72.3** | **9/10** | 6/6 | 6.90 | (same model) |
 
-*E2 – Example input → output (synthetic sentence).*
+*E2 – Example outputs (synthetic sentences).*
 
-⟨DEMO EXAMPLES – 2–3 rows: German/Japanese source, MT output, reference⟩
+| Source (synthetic) | MT output | Problem |
+| --- | --- | --- |
+| Das Steuergerät muss bei einer Umgebungstemperatur von -40 °C bis +85 °C fehlerfrei funktionieren. | OPUS‑MT: *The control unit **shall** function correctly at an ambient temperature of -40 °C to +85 °C.* | none – correct term, modal and numbers |
+| Das **Lastenheft** gilt in Verbindung mit den kundenspezifischen Anforderungen … | NLLB: *The **package leaflet** shall be valid in conjunction with the customer‑specific requirements …* | wrong domain term (pharmaceutical sense) |
+| 制御ユニットは、**-40℃**から+85℃の周囲温度で正常に動作しなければならない。 | NLLB: *… at ambient temperatures between **40°C** and +85°C.* | minus sign lost – **not caught** by the automatic number check |
+| サプライヤーは、量産開始の**6週間前までに**…通知すること。 | NLLB: *… notify the customer … **within six weeks of** the start of mass production.* | deadline meaning changed (“at least six weeks before”) |
+| 本仕様書に記載のない事項については、顧客と協議の上決定する。 | OPUS‑MT: ***I’ll** decide on matters that don’t appear in **my** specs in a discussion with **my** customers.* | omitted Japanese subject filled with an invented “I” |
+| 耐久試験は、1,000時間以上実施すること。 | OPUS‑MT: *The endurance exam **should** take more than 1,000 hours.* | obligation weakened to “should” (a recommendation in standards language) |
 
-*E3 – Workflow diagram* (above). Screenshots of the internal tools are not included because of confidentiality.
+*E3 – Workflow diagram* (above). Screenshots of the internal tools are omitted because of confidentiality.
 
 ## 5.3 Industry analysis – Analyse
 
 **Key benefits / value.**
 
-* **Speed and access:** engineers can read a German or Japanese specification within minutes instead of waiting for
-  a full human translation – important when requirements arrive during quotations or design changes.
-* **Cost:** human translation is reserved for the documents and passages that need it (review by the language
-  department), instead of every page.
-* **Coverage:** one workflow covers both German and Japanese customers, and multilingual models can add further
-  languages.
+* **Speed and access:** engineers can read a German or Japanese specification immediately instead of waiting for a
+  full human translation – valuable during quotations and change requests.
+* **Cost:** expert review is focused on documents and passages that need it, instead of translating every page by hand.
+* **Coverage:** one workflow serves German and Japanese customers; multilingual models can add further languages.
 
 **Limitations / problems.**
 
-* **Confidentiality (major):** **[Observed]** customer agreements forbid uploading documents to public domains, which
-  rules out public web translators, cloud MT APIs and LLM services for many documents – exactly the documents where
-  translation is most needed.
-* **Domain terminology:** general‑purpose MT does not know company or customer terminology (*Lastenheft*,
-  *Bordnetz*, abbreviations); one wrong term can change a requirement.
-* **Requirement semantics:** modal verbs and negations (*muss* = *shall*, *darf nicht* = *must not*), numbers and units
-  must be translated exactly; fluent but wrong output is dangerous because it looks correct.
-* **Japanese is harder:** long sentences, omitted subjects and different word order give lower quality than
-  German→English (see E1).
-* **Raw output risk:** **[Observed]** output is sometimes used as is, without review, so errors may go unnoticed.
+* **Confidentiality (major):** **[Observed]** customer agreements forbid uploading documents to public domains,
+  which rules out public web translators, cloud MT APIs and LLM services for exactly the documents that most need
+  translating.
+* **Domain terminology:** general models do not know automotive terminology – *Lastenheft* became “package
+  leaflet”, OPUS‑MT rendered *Bordnetz* (vehicle electrical system) as “on‑board system” (glossary 7–9 of 10 terms per model, E1).
+* **Requirement semantics:** a fluent translation can still change a requirement: a lost minus sign, a changed
+  deadline, *shall* weakened to *should*, an invented subject (E2). These errors look correct, so raw output is risky.
+* **Japanese is harder than German:** the best Japanese result (chrF 72.3) is clearly below the best German one
+  (82.6) – long sentences and omitted subjects.
+* **Simple checks are not enough:** the automatic number check passed all sentences, yet missed the lost minus sign.
+* **Raw output risk:** **[Observed]** output is sometimes used as is, without review.
 
 **Evidence of effectiveness or impact.** **[Observed]** MT is part of the daily workflow for German and Japanese
-documents, which shows that it is useful enough to be adopted, with the language department as the quality gate.
-**[Proposed – demo]** ⟨one or two sentences quoting E1, e.g. which model reaches which chrF, how many glossary
-terms/numbers were kept, and the CPU time per sentence – showing that local models are fast enough for on‑premise
-use but still need a glossary and review⟩.
+documents, with the language department as the quality gate – it is useful enough to have been adopted.
+**[Proposed – demo]** Local open‑source models reach usable quality without any data leaving the machine: OPUS‑MT
+de→en scores chrF 82.6 with 9/10 glossary terms correct at 0.86 s per sentence on one CPU thread (about 1.5 minutes
+for a 100‑sentence document), and NLLB‑200 is the better choice for Japanese (chrF 72.3 vs 55.6, 9/10 terms).
+No single model is best for both pairs, and every model made at least one terminology or meaning error, so
+on‑premise MT must be combined with a glossary, better checks and human review.
 
 ## 5.4 Reflection and future scope – Reflect
 
-**Major challenge / gap.** The **confidentiality constraint**: the best‑known MT and LLM services are cloud‑based, but
-customer confidentiality agreements do not allow these documents to leave the organisation. The current tools
-therefore cannot be used freely for the documents that matter most, and translation either falls back to slower
-manual work or carries a compliance risk.
+**Major challenge / gap.** **Confidentiality.** The best‑known MT and LLM services are cloud‑based, but customer
+confidentiality agreements do not allow these documents to leave the organisation. The documents that matter most
+therefore cannot use those tools, and translation falls back to slower manual work or carries a compliance risk.
 
-**Recommended improvement.** **[Proposed]** An **on‑premise MT service**: open‑source Transformer models (e.g.
-OPUS‑MT, NLLB‑200, or a larger open LLM where hardware allows) hosted on an internal server, with (1) a **domain
-glossary** enforced during or after translation, (2) automatic **checks** for numbers, units, standard names and
-obligation/negation words, (3) **routing** of low‑confidence sentences to the language department, and (4)
-**fine‑tuning** on the organisation’s own reviewed translations (translation memory). Requirements: approval from IT
-security and legal, an internal server (the demo shows a CPU is sufficient for small models; a GPU helps for larger
-ones), a glossary owner, and a small test set to measure quality before roll‑out.
+**Recommended improvement.** **[Proposed]** An **on‑premise MT service** inside the company network:
 
-**Potential future use.** Translate‑and‑compare of **new customer document versions** (highlight changed
-requirements), **multilingual requirement search/RAG** over historic specifications, extraction of requirements into
-the requirements‑management tool after translation (link to Information Extraction), and translation of supplier
-or plant communication in further languages.
+1. **Per‑language model selection** based on a small internal test set – e.g. OPUS‑MT for German and NLLB‑200 for
+   Japanese in our demo.
+2. A **domain glossary / terminology database** enforced during or after translation (*Lastenheft* →
+   *requirements specification*).
+3. **Stronger automatic checks** for signs, numbers, units, deadlines and *shall / must not / should*, and
+   **routing** of flagged sentences to the language department for post‑editing.
+4. **Fine‑tuning** on the organisation’s reviewed translations (translation memory) to adapt the model to its
+   customers’ style.
+
+*Requirements:* approval from IT security and legal; an internal server (the demo shows that small models run on a
+CPU; a GPU or more CPU threads would speed up the larger model); an owner for the glossary; and a test set with
+reference translations to measure quality before and after roll‑out.
+
+**Potential future use.** Comparing **new versions of customer documents** in English to highlight changed
+requirements; **multilingual search / RAG** over past specifications; automatic **extraction of requirements**
+into the requirements‑management tool after translation (link to Information Extraction, Part 1); and an
+on‑premise open **LLM** for translation and summarisation once suitable hardware is available.
 
 ## References and acknowledgements
 
 * Vaswani, A. et al. (2017). *Attention Is All You Need.* NeurIPS.
 * Tiedemann, J. & Thottingal, S. (2020). *OPUS‑MT – Building open translation services for the World.* EAMT.
 * NLLB Team (2022). *No Language Left Behind: Scaling Human‑Centered Machine Translation.* arXiv:2207.04672.
-* Post, M. (2018). *A Call for Clarity in Reporting BLEU Scores* (sacreBLEU). WMT.
+* Post, M. (2018). *A Call for Clarity in Reporting BLEU Scores.* WMT (sacreBLEU).
 * Popović, M. (2015). *chrF: character n‑gram F‑score for automatic MT evaluation.* WMT.
-* Tools: HuggingFace `transformers`, `sacrebleu`; Google Colab for the demo.
-* Information on the organisational practice provided by group member Rajesh R. Shenoi (anonymised).
-* AI tools: Claude Code (Anthropic) was used to help structure the report, write the demo notebook and prepare the
-  synthetic example sentences and references; the content was reviewed by the group.
+* Tools: HuggingFace `transformers`, `sacrebleu`, Google Colab. Models: `Helsinki-NLP/opus-mt-de-en`,
+  `Helsinki-NLP/opus-mt-ja-en`, `facebook/nllb-200-distilled-600M`.
+* Organisational practice described by group member Rajesh R. Shenoi (anonymised).
+* AI tools: Claude Code (Anthropic) helped structure the report, write the demo notebook and prepare the synthetic
+  sentences and reference translations; all content was reviewed by the group.

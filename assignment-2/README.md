@@ -70,7 +70,7 @@ Relation extraction macro-F1: logistic regression 0.523, SciBERT + entity marker
 - [x] GloVe actually downloaded (Part C prints `GloVe 6B 100d: 400,000 vectors`, not the warning).
 - [x] Replace every `✏️ After running …` block with discussion that quotes the printed numbers.
 - [x] Reflection claims match the Part G table and the auto-generated summary.
-- [ ] Part 2 PDF written from `situated-learning/outline.md`.
+- [x] Part 2 PDF written (`situated-learning/Assignment2_SituatedLearning_Group_81.pdf`, 4 pages) – review org-type wording and emails.
 
 ## Plan – Part 2 Situated learning (5 marks)
 
@@ -84,4 +84,4 @@ It must describe a *real* use in a member's organisation/industry – or clearly
 2. ✅ Notebook drafted and smoke-tested end-to-end locally (tiny stand-in models, since the sandbox has no Hub access).
 3. ✅ Group runs the notebook on Colab and commits the executed copy.
 4. ✅ Write the result discussions (✏️ blocks) from the real numbers.
-5. ⏳ Situated learning PDF.
+5. ✅ Situated learning PDF (Machine Translation) + on-prem MT demo.
