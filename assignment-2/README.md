@@ -16,7 +16,7 @@ assignment-2/
 ├── notebooks/
 │   └── Assignment2_Programming_Group_81.ipynb   ← Part 1 submission
 ├── outputs/                      ← created when the notebook runs (git-ignored; force-add llm_ner_outputs.csv with `git add -f`)
-└── situated-learning/
+└── situated-learning/            ← Part 2 (Machine Translation): draft .md, workflow diagram, mt_demo.ipynb
     └── outline.md                ← Part 2 skeleton → Assignment2_SituatedLearning_Group_81.pdf
 ```
 
