@@ -1,0 +1,6 @@
+outputs/
+*.zip
+glove.6B.*
+bert_ner/
+bert_re/
+.ipynb_checkpoints/
