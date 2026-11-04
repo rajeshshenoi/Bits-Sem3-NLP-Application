@@ -14,10 +14,10 @@ assignment-2/
 │   ├── Assignment2_IE_PS3.docx
 │   └── Information_Extraction_Assignment_Template.ipynb
 ├── notebooks/
-│   └── Assignment2_Programming_Group_XX.ipynb   ← Part 1 submission (rename XX → group no.)
+│   └── Assignment2_Programming_Group_81.ipynb   ← Part 1 submission
 ├── outputs/                      ← created when the notebook runs (git-ignored; force-add llm_ner_outputs.csv with `git add -f`)
 └── situated-learning/
-    └── outline.md                ← Part 2 skeleton → Assignment2_SituatedLearning_Group_XX.pdf
+    └── outline.md                ← Part 2 skeleton → Assignment2_SituatedLearning_Group_81.pdf
 ```
 
 ## Dataset facts (verified)
@@ -44,7 +44,7 @@ Integrity rules respected: seqeval entity-level metric, one test set, shared see
 
 ## How to run (Colab, free T4)
 
-1. Open `notebooks/Assignment2_Programming_Group_XX.ipynb` in Colab (File → Upload, or open from GitHub).
+1. Open `notebooks/Assignment2_Programming_Group_81.ipynb` in Colab (File → Upload, or open from GitHub).
 2. Runtime → Change runtime type → **T4 GPU**.
 3. Runtime → **Run all** (≈ 35–50 min; the LLM part is the longest).
 4. File → Download `.ipynb` (executed, with outputs) and also download `outputs/llm_ner_outputs.csv`.
@@ -52,7 +52,8 @@ Integrity rules respected: seqeval entity-level metric, one test set, shared see
 
 ## Checklist before submission
 
-- [ ] Fill group number, names, BITS IDs, contributions (first cell) and rename the file.
+- [x] Group number, names and BITS IDs filled in; file renamed to Group_81.
+- [ ] Fill the Contribution column in the first cell.
 - [ ] Notebook executed top-to-bottom on Colab with **no error cells**.
 - [ ] GloVe actually downloaded (Part C prints `GloVe 6B 100d: 400,000 vectors`, not the warning).
 - [ ] Replace every `✏️ After running …` block with discussion that quotes the printed numbers.

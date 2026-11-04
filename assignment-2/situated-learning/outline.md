@@ -1,6 +1,6 @@
 # Part 2 – Situated Learning (5 marks) – working outline
 
-Deliverable: `Assignment2_SituatedLearning_Group_<GroupNo>.pdf`, 2–4 pages (excluding screenshots/evidence).
+Deliverable: `Assignment2_SituatedLearning_Group_81.pdf`, 2–4 pages (excluding screenshots/evidence).
 Flow required by the brief: **CONCEPT TAUGHT → INDUSTRY USE → PRACTICAL ANALYSIS → REFLECTION**.
 
 > ⚠️ This must be based on a **real** use in a group member's organisation/industry. If the concept is not used
