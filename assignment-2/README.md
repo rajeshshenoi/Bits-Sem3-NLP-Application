@@ -53,7 +53,7 @@ Integrity rules respected: seqeval entity-level metric, one test set, shared see
 ## Checklist before submission
 
 - [x] Group number, names and BITS IDs filled in; file renamed to Group_81.
-- [ ] Fill the Contribution column in the first cell.
+- [x] Contribution column filled (equal contribution).
 - [ ] Notebook executed top-to-bottom on Colab with **no error cells**.
 - [ ] GloVe actually downloaded (Part C prints `GloVe 6B 100d: 400,000 vectors`, not the warning).
 - [ ] Replace every `✏️ After running …` block with discussion that quotes the printed numbers.
