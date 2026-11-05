@@ -3,6 +3,9 @@
 Short explanations of every concept the notebook uses, in the order of the parts. Read the matching section
 before running/discussing that part.
 
+> Companion: [`STUDY_GUIDE.md`](STUDY_GUIDE.md) maps these concepts to the notebook cells, our results and a viva
+> question bank.
+
 ---
 
 ## 1. Information extraction = NER + relation extraction

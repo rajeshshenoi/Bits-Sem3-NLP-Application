@@ -10,6 +10,7 @@ Total: 15 marks = Part 1 programming (10) + Part 2 situated learning (5).
 assignment-2/
 ├── README.md                     ← this plan + checklist
 ├── LEARNING_NOTES.md             ← the concepts behind every part, explained
+├── STUDY_GUIDE.md                ← cell-by-cell walkthrough, results cheat sheet, viva Q&A, exercises
 ├── brief/                        ← documents received from BITS (do not edit)
 │   ├── Assignment2_IE_PS3.docx
 │   └── Information_Extraction_Assignment_Template.ipynb
